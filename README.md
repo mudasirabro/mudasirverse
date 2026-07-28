@@ -195,23 +195,12 @@ Contributions are welcome! Here's how:
 
 ---
 
-## 📸 Screenshots
 
-<div align="center">
-
-| Home Page | Movie Detail |
-|-----------|--------------|
-| ![Home Page](./screenshots/home.png) | ![Movie Detail](./screenshots/detail.png) |
-
-| AI Matchmaker | Watchlist |
-|---------------|-----------|
-| ![AI Matchmaker](./screenshots/matchmaker.png) | ![Watchlist](./screenshots/watchlist.png) |
 
 </div>
 
-*Add your own screenshots in the `screenshots/` folder!*
 
----
+
 
 ## 🙏 Acknowledgments
 
