@@ -1,0 +1,6 @@
+{
+  "name": "MudasirVerse",
+  "description": "Explore movies and TV series with rich filters, details, watchlists, trailers, real-time movie data, and AI-powered recommendations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
