@@ -1,26 +1,27 @@
-// api/index.js - Complete standalone API
+// api/index.js
 import express from 'express';
 
 const app = express();
-
-// Middleware
-app.use(express.json());
 
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ 
     status: 'ok', 
     timestamp: new Date().toISOString(),
-    tmdbKey: process.env.TMDB_API_KEY ? '✅ Set' : '❌ Missing'
+    message: 'API is working!'
   });
 });
 
-// Movie API endpoint
+// Movies endpoint
 app.get('/api/media', async (req, res) => {
   try {
     const apiKey = process.env.TMDB_API_KEY;
     if (!apiKey) {
-      return res.json({ total: 0, items: [], error: 'TMDB_API_KEY not set' });
+      return res.json({ 
+        total: 0, 
+        items: [], 
+        error: 'TMDB_API_KEY not set on Vercel' 
+      });
     }
 
     const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`;
@@ -38,7 +39,6 @@ app.get('/api/media', async (req, res) => {
       rating: movie.vote_average || 0,
       voteCount: movie.vote_count || 0,
       genres: ['Popular'],
-      tagline: 'TMDB Popular',
       duration: '2h 00m',
       ageRating: 'PG-13',
       director: 'Various',
@@ -54,7 +54,7 @@ app.get('/api/media', async (req, res) => {
   }
 });
 
-// TV Series API endpoint
+// TV Series endpoint
 app.get('/api/tv/popular', async (req, res) => {
   try {
     const apiKey = process.env.TMDB_API_KEY;
@@ -77,7 +77,6 @@ app.get('/api/tv/popular', async (req, res) => {
       rating: show.vote_average || 0,
       voteCount: show.vote_count || 0,
       genres: ['Popular'],
-      tagline: 'TMDB Popular',
       duration: 'Multi-Season',
       ageRating: 'TV-MA',
       creator: 'Various',
@@ -126,9 +125,13 @@ app.get('/api/search', async (req, res) => {
   }
 });
 
-// Catch-all to serve frontend
-app.get('*', (req, res) => {
-  res.status(404).json({ error: 'Not found' });
+// Catch-all for API routes
+app.get('/api/*', (req, res) => {
+  res.status(404).json({ 
+    error: 'API endpoint not found',
+    path: req.path,
+    method: req.method
+  });
 });
 
 export default app;
