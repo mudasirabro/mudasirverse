@@ -1,4 +1,4 @@
-// api/index.js - Vercel serverless function entry point
+// api/index.js - New Vercel deployment function entry point
 import app from '../dist/server.cjs';
 
 export default app;
